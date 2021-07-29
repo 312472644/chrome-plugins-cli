@@ -1,0 +1,28 @@
+{
+  "name": "chrome-cli",
+  "version": "1.0.0",
+  "description": "chrome-cli project",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/312472644/chrome-cli.git"
+  },
+  "author": "sugar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/312472644/chrome-cli/issues"
+  },
+  "homepage": "https://github.com/312472644/chrome-cli#readme",
+  "dependencies": {
+    "@types/node": "^15.12.2",
+    "colors": "^1.4.0",
+    "commander": "^2.19.0",
+    "download-git-repo": "^1.1.0",
+    "inquirer": "^6.2.2",
+    "ora": "^3.2.0"
+  },
+  "bin": {
+    "chrome-cli": "bin/chrome-cli",
+    "chrome-cli-init": "bin/chrome-cli-init"
+  }
+}
