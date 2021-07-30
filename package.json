@@ -1,20 +1,20 @@
 {
-  "name": "chrome-cli",
+  "name": "chrome-plugins-cli",
   "version": "1.0.0",
-  "description": "chrome-cli project",
+  "description": "chrome-plugins-cli project",
   "main": "index.js",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/312472644/chrome-cli.git"
-  },
   "author": "sugar",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/312472644/chrome-cli/issues"
+  "scripts": {
+    "complier": "babel src -d dist",
+    "publish": "npm publish"
   },
-  "homepage": "https://github.com/312472644/chrome-cli#readme",
   "dependencies": {
+    "@babel/cli": "^7.14.8",
+    "@babel/core": "^7.14.8",
+    "@babel/preset-env": "^7.14.8",
     "@types/node": "^15.12.2",
+    "babel-preset-latest": "^6.24.1",
     "colors": "^1.4.0",
     "commander": "^2.19.0",
     "download-git-repo": "^1.1.0",
@@ -22,7 +22,7 @@
     "ora": "^3.2.0"
   },
   "bin": {
-    "chrome-cli": "bin/chrome-cli",
-    "chrome-cli-init": "bin/chrome-cli-init"
+    "chrome-plugins-cli": "bin/chrome-plugins-cli",
+    "chrome-plugins-cli-init": "bin/chrome-plugins-cli-init"
   }
 }
