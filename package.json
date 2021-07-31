@@ -24,5 +24,8 @@
   "bin": {
     "chrome-plugins-cli": "bin/chrome-plugins-cli",
     "chrome-plugins-cli-init": "bin/chrome-plugins-cli-init"
+  },
+  "devDependencies": {
+    "file-loader": "^6.2.0"
   }
 }

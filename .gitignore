@@ -6,3 +6,6 @@
 
 # log
 *.log
+
+# debugger
+/.vscode

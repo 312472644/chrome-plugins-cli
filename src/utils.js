@@ -1,8 +1,20 @@
 const fs = require('fs');
 const colors = require('colors');
+const path = require('path');
+const ora = require('ora');
+const { exec } = require('child_process');
 
 /** 工具脚本 */
 const utils = {
+  // 用户输入的项目信息
+  initProject: {
+    projectName: 'chrome-plugins-cli'
+  },
+  // package依赖包
+  packageDependencies: {
+    dependencies: {},
+    devDependencies: {}
+  },
   /**
    * 重写clone项目package文件
    *
@@ -10,18 +22,75 @@ const utils = {
    * @param {*} data
    */
   rewritePackage(path, data) {
-    const fileName = `${path}/package.json`;
     const { projectName, description, author } = data;
-    if (fs.existsSync(fileName)) {
-      const content = fs.readFileSync(fileName).toString();
+    if (fs.existsSync(path)) {
+      const content = fs.readFileSync(path).toString();
       let json = JSON.parse(content);
       json.name = projectName;
       json.author = author;
       json.description = description;
+      // 获取第三方依赖包
+      utils.packageDependencies.dependencies = json.dependencies || {};
+      utils.packageDependencies.devDependencies = json.devDependencies || {};
+      // 获取项目信息
+      utils.initProject.projectName = projectName;
       //修改项目文件夹中 package.json 文件
-      fs.writeFileSync(fileName, JSON.stringify(json, null, '\t'), 'utf-8');
+      fs.writeFileSync(path, JSON.stringify(json, null, '\t'), 'utf-8');
     } else {
       console.log('file is not exist'.red);
+    }
+  },
+  /**
+   * 是否需要安装依赖
+   *
+   * @return {*} 
+   */
+  isInstallDep() {
+    const { dependencies, devDependencies } = utils.packageDependencies;
+    return {
+      dependencies,
+      devDependencies,
+      isPromptInstall: Object.keys(dependencies).length > 0 || Object.keys(devDependencies).length > 0
+    }
+  },
+  /**
+   * 安装依赖
+   *
+   */
+  installDep() {
+    const spinner = ora('install...');
+    spinner.start();
+    // 执行依赖命令
+    exec('npm i', {
+      cwd: path.join(process.cwd(), utils.initProject.projectName)
+    }, (error) => {
+      if (error) {
+        console.log('\n install dependencies fail'.red);
+        spinner.fail();
+        return;
+      }
+      spinner.succeed();
+      console.log('\n install dependencies success'.green);
+    });
+  },
+  /**
+   * 删除文件夹以及其目录下的所有文件
+   *
+   * @param {*} path
+   */
+  deleteDirectory(path) {
+    let files = [];
+    if (fs.existsSync(path)) {
+      files = fs.readdirSync(path);
+      files.forEach((file) => {
+        const curPath = path + "/" + file;
+        if (fs.statSync(curPath).isDirectory()) {
+          utils.deleteDirectory(curPath);
+        } else {
+          fs.unlinkSync(curPath);
+        }
+      });
+      fs.rmdirSync(path);
     }
   }
 };
