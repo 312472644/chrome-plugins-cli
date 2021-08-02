@@ -3,6 +3,7 @@ const colors = require('colors');
 const path = require('path');
 const ora = require('ora');
 const { exec } = require('child_process');
+const { COMPLETE } = require('./constant.js');
 
 /** 工具脚本 */
 const utils = {
@@ -65,13 +66,27 @@ const utils = {
       cwd: path.join(process.cwd(), utils.initProject.projectName)
     }, (error) => {
       if (error) {
-        console.log('\n install dependencies fail'.red);
-        spinner.fail();
+        utils.installCompleteMessage(spinner, COMPLETE.Fail, 'install dependencies fail');
         return;
       }
-      spinner.succeed();
-      console.log('\n install dependencies success'.green);
+      utils.installCompleteMessage(spinner, COMPLETE.Success, 'install dependencies success');
     });
+  },
+  /**
+   * 安装完成提示信息
+   *
+   * @param {*} spinner ora实例
+   * @param {*} type fail | success
+   * @param {*} message 加载完成提示信息
+   */
+  installCompleteMessage(spinner, type, message) {
+    if (type === COMPLETE.Success) {
+      console.log(`\n ${message}`.green);
+      spinner.succeed();
+    } else if (type === COMPLETE.Fail) {
+      console.log(`\n ${message}`.red);
+      spinner.fail();
+    }
   },
   /**
    * 删除文件夹以及其目录下的所有文件

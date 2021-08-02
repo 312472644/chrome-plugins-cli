@@ -2,7 +2,7 @@
   "name": "chrome-plugins-cli",
   "version": "1.0.0",
   "description": "chrome-plugins-cli project",
-  "main": "index.js",
+  "main": "./src/index.js",
   "author": "sugar",
   "license": "ISC",
   "scripts": {
