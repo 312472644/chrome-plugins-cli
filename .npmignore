@@ -1,2 +1,3 @@
+# npm 发布忽略的文件
 # dependencies
 /node_modules
