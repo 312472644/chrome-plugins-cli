@@ -1,6 +1,6 @@
 {
   "name": "chrome-plugins-cli",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "chrome-plugins-cli project",
   "main": "./src/index.js",
   "author": "sugar",
