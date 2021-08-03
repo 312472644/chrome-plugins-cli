@@ -1,17 +1,16 @@
 {
   "name": "chrome-plugins-cli",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "chrome-plugins-cli project",
   "main": "./src/index.js",
   "author": "sugar",
   "license": "ISC",
   "scripts": {
-    "complier": "babel src -d dist",
+    "prepublish": "npm run build:rollup",
     "publish": "npm publish",
-    "build:rollup": "rollup --config ./rollup.config.js"
+    "build:rollup": "rollup --config ./config/rollup.config.js"
   },
   "dependencies": {
-    "@babel/cli": "^7.14.8",
     "@babel/core": "^7.14.8",
     "@babel/preset-env": "^7.14.8",
     "@types/node": "^15.12.2",
@@ -19,11 +18,10 @@
     "colors": "^1.4.0",
     "commander": "^2.19.0",
     "download-git-repo": "^1.1.0",
+    "glob": "^7.1.7",
     "inquirer": "^6.2.2",
     "ora": "^3.2.0",
     "rollup-plugin-babel": "^4.4.0",
-    "rollup-plugin-commonjs": "^10.1.0",
-    "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-terser": "^7.0.2"
   },
   "bin": {
@@ -35,6 +33,7 @@
   },
   "keywords": [
     "chrome-plugins",
+    "plugins-cli",
     "chrome-plugins-cli"
   ]
 }

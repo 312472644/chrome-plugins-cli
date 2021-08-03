@@ -4,7 +4,7 @@
 const program = require('commander');
 
 program
-  .version(require('../package').version)
+  .version(require('../package.json').version)
   .usage('init')
   .command('init', 'generate a new project from a template') // 定义命令。对应package.json里面的bin命令
 

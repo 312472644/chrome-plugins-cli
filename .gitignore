@@ -9,3 +9,6 @@
 
 # debugger
 /.vscode
+
+# generate lib
+/lib
