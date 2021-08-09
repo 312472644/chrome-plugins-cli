@@ -16,6 +16,14 @@ chrome插件脚手架。
 npm i chrome-plugins-cli
 ```
 
+#### 发布
+
+```javascript
+npm run cli:publish --发布npm，执行该命令会在发布执行打包命令
+npm run prepublish --发布npm之前执行的钩子，发布之前会进行cli打包,npm中内置一种前置hooks(pre),一种后置hooks(post)
+npm run build:rollup --打包cli
+```
+
 
 
 #### 命令说明

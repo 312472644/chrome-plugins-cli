@@ -22,7 +22,7 @@ const downTemplate = (downPath, answer = { projectName, description, author }) =
   // 出现加载图标
   const spinner = ora("Downloading...");
   spinner.start();
-  download('direct:https://github.com/312472644/chrome-utils.git#main', downPath, { clone: true }, (error) => {
+  download('direct:https://github.com/312472644/chrome-plugin-template.git#main', downPath, { clone: true }, (error) => {
     if (error) {
       installCompleteMessage(spinner, COMPLETE.Fail, `Generation failed. ${error}`);
       return;

@@ -4,11 +4,11 @@ module.exports = {
   projectInitList: [{
     name: 'projectName',
     type: 'input',
-    default: 'chrome-plugins-cli'
+    default: 'chrome-plugin-template'
   }, {
     name: 'description',
     type: 'input',
-    default: 'chrome-plugins-cli project',
+    default: 'chrome-plugin-template project',
   }, {
     name: 'author',
     type: 'input',
